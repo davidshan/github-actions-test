@@ -9,6 +9,9 @@ jobs:
       - name: echo a string
         run: echo "Hello World"
 
+      - name: echo the pull_request object
+        run: echo github.event.pull_request
+
       - name: fail if 'mylabel' label is applied
         if: contains(github.event.pull_request.labels.*.name, 'mylabel')
         run: exit 1
