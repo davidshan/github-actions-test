@@ -1,0 +1,17 @@
+name: My Shell Commands
+
+on: [pull_request]
+
+jobs:
+  autofail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo a string
+        run: echo "Hello World"
+
+      - name: fail if 'mylabel' label is applied
+        if: contains(github.event.pull_request.labels.*.name, 'mylabel')
+        run: exit 1
+
+      - name: last step
+        run: echo "should not get here if previous step failed"
